@@ -16,16 +16,17 @@ import java.util.Map;
 public class FactoryMap<K,V> {
     /**
     @author: José Pablo Kiesling Lange
-    Nombre del programa: Factory Map
+    Program's name: Factory Map
     @version: 
-        - Creación: 14/03/2022
-        - Última modificación: 14/03/2022
+        - Creation's date: 14/03/2022
+        - Last modification: 14/03/2022
 
-    Clase que usa el patron Factory para la creacion del mapa
+    Class that use the Factory pattern to create the instance of the map
     */ 
 
+    //---------------------------MÉTODOS------------------------------
     /*****************************************************************
-     * crea una instancia del mapa usando el patrón factory
+     * instance of map using factory pattern
      * @param option
      * @return map
      */
