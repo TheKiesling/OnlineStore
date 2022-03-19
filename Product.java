@@ -22,7 +22,7 @@ public class Product {
     //---------------------------PROPIEDADES--------------------------
     private String name;
     private String category;
-    private int count;
+    private int amount;
 
     //---------------------------MÉTODOS------------------------------
     /*****************************************************************
@@ -34,15 +34,15 @@ public class Product {
     public Product(String name, String category){
         this.name = name;
         this.category = category;
-        this.count = 1;
+        this.amount = 1;
     }
     //****************************************************************
 
     /*****************************************************************
      * incrementate the count of the product
      */
-    public void addCount(){
-        this.count++;
+    public void addAmount(){
+        this.amount++;
     }
     //****************************************************************
 
@@ -51,7 +51,7 @@ public class Product {
      * @return a friendly message of product's properties
      */
     public String toString(){
-        return this.category + " | " + this.name + " | " + this.count;
+        return this.category + " | " + this.name + " | " + this.amount;
     }
     //****************************************************************
 }

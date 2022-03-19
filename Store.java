@@ -28,7 +28,8 @@ public class Store {
     //---------------------------PROPIEDADES--------------------------
     private Map<String, Product> inventory = null;
     private Map<String, Product> collection = null;
-    private ArrayList<String> keys;
+    private ArrayList<String> inventoryKeys;
+    private ArrayList<String> collectionKeys;
 
     //---------------------------MÉTODOS------------------------------
 
@@ -62,7 +63,7 @@ public class Store {
                 elements = reader.nextLine().split("|");
                 String category = elements[0];
                 String nameProduct = elements[1];
-                insertProduct(category, nameProduct, inventory);
+                insertProduct(category, nameProduct, inventory, inventoryKeys);
             reader.close();
         }catch(FileNotFoundException e){
             String s = "Store.read:" + e.getMessage();
@@ -85,11 +86,11 @@ public class Store {
 
         if(collection.containsKey(key)){ //If the user adds an existing product
             product = inventory.get(key);
-            product.addCount(); //Add the count of this product
+            product.addAmount(); //Add the count of this product
         }
         else{ //The product doesn't exist
             if (inventory.containsKey(key)) //Verify if the product exist
-                insertProduct(category, nameProduct, collection);
+                insertProduct(category, nameProduct, collection, collectionKeys);
             else{ //The product doesn't exist
                 status = "The product: " + product + " doesn't exist";
                 add = false;
@@ -113,9 +114,9 @@ public class Store {
         Boolean find = false;
         String[] keys = {};
 
-        for(int i = 0; i < this.keys.size() && find == false; i++){ //Look all the keys
-            keys = this.keys.get(i).split("|"); //Break the keys
-            if (keys[1] == nameProduct){ //Verify if the product is the same that the product that are looking
+        for(int i = 0; i < this.inventoryKeys.size() && find == false; i++){ //Look all the keys
+            keys = this.inventoryKeys.get(i).split("|"); //Break the keys
+            if (keys[1].equals(nameProduct)){ //Verify if the product is the same that the product that are looking
                 category = keys[0]; //This is the category
                 find = true;
             }
@@ -125,23 +126,70 @@ public class Store {
     //****************************************************************
 
     /*****************************************************************
+     * choose the option of showing the products and print them
+     * @Overload
+     * @param option
+     * @return all the products
+     */
+    public String showProducts(int option){
+        String products = "Category | Product | Amount";
+        if (option == 3)
+            showProducts(collectionKeys);
+        else if (option == 5)
+            showProducts(inventoryKeys);
+        return products;
+    }
+    //****************************************************************
+
+    /*****************************************************************
+     * show the product's information depends of the space that the user want
+     * @Overload
+     * @param keys
+     * @return all the products
+     */
+    private String showProducts(ArrayList<String> keys){
+        String products = "";
+        for(int i = 0; i < keys.size(); i++){
+            Product product = collection.get(keys.get(i));
+            products += product.toString() + "\n";
+        }
+        return products;  
+    }
+    //****************************************************************
+
+    /*****************************************************************
      * insert a product to the map
      * @param elements
      */
-    private void insertProduct(String category, String nameProduct, Map<String, Product> map){
+    private void insertProduct(String category, String nameProduct, Map<String, Product> map, ArrayList<String> keys){
         Product product = new Product(nameProduct, category);
-        String key = createKey(category, nameProduct);
+        String key = createKey(category, nameProduct, keys);
         map.put(key, product);
     }
     //****************************************************************
 
     /*****************************************************************
      * create a key that will be the id of the product
+     * @Overload
      * @param category
      * @param product
      * @return a key that serves to the map
      */
     private String createKey(String category, String product){
+        category.trim(); product.trim();
+        String key = category + "|" + product;
+        return key;
+    }
+    //****************************************************************
+
+    /*****************************************************************
+     * create a key that will be the id of the product and add it to an array
+     * @Overload
+     * @param category
+     * @param product
+     * @return a key that serves to the map
+     */
+    private String createKey(String category, String product, ArrayList<String> keys){
         category.trim(); product.trim();
         String key = category + "|" + product;
         keys.add(key);
