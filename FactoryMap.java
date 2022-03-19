@@ -28,7 +28,7 @@ public class FactoryMap<K,V> {
     /*****************************************************************
      * instance of map using factory pattern
      * @param option
-     * @return map
+     * @return instance of map
      */
     public Map<K,V> newMap(int option){
         Map<K,V> map = null;

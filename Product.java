@@ -11,12 +11,12 @@
 public class Product {
     /**
     @author: José Pablo Kiesling Lange
-    Nombre del programa: AbstractMap.java
+    Program's name: Product
     @version: 
-        - Creación: 17/03/2022
-        - Última modificación: 17/03/2022
+        - Creation's date: 14/03/2022
+        - Last modification: 14/03/2022
 
-    Clase que implementa la interfaz de pilas, y sirve como ADT
+    Product and his properties
     */ 
 
     //---------------------------PROPIEDADES--------------------------
@@ -31,10 +31,10 @@ public class Product {
      * @param category
      * @param count
      */
-    public Product(String name, String category, int count){
+    public Product(String name, String category){
         this.name = name;
         this.category = category;
-        this.count = count;
+        this.count = 1;
     }
     //****************************************************************
 
@@ -48,6 +48,7 @@ public class Product {
 
     /*****************************************************************
      * override of method toString
+     * @return a friendly message of product's properties
      */
     public String toString(){
         return this.category + " | " + this.name + " | " + this.count;
