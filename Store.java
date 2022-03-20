@@ -116,8 +116,8 @@ public class Store {
 
         for(int i = 0; i < this.inventoryKeys.size() && find == false; i++){ //Look all the keys
             keys = this.inventoryKeys.get(i).split("|"); //Break the keys
-            if (keys[1].equals(nameProduct)){ //Verify if the product is the same that the product that are looking
-                category = keys[0]; //This is the category
+            if (keys[0].equals(nameProduct)){ //Verify if the product is the same that the product that are looking
+                category = keys[1]; //This is the category
                 find = true;
             }
         }
@@ -131,12 +131,16 @@ public class Store {
      * @param option
      * @return all the products
      */
-    public String showProducts(int option){
+    public String showProducts(int option, int mapOption){
         String products = "Category | Product | Amount";
         if (option == 3)
-            showProducts(collectionKeys);
+            showProducts(collectionKeys, collection);
+        else if (option == 4)
+            showProducts(collectionKeys, collection, mapOption);
         else if (option == 5)
-            showProducts(inventoryKeys);
+            showProducts(inventoryKeys, inventory);
+        else if (option == 6)
+            showProducts(inventoryKeys, inventory, mapOption);
         return products;
     }
     //****************************************************************
@@ -147,13 +151,39 @@ public class Store {
      * @param keys
      * @return all the products
      */
-    private String showProducts(ArrayList<String> keys){
+    private String showProducts(ArrayList<String> keys, Map<String, Product> map){
         String products = "";
         for(int i = 0; i < keys.size(); i++){
-            Product product = collection.get(keys.get(i));
+            Product product = map.get(keys.get(i));
             products += product.toString() + "\n";
         }
         return products;  
+    }
+    //****************************************************************
+
+    /*****************************************************************
+     * show the product's information sorted by tipe, depends of the space that the user want
+     * @param keys
+     * @param map
+     * @param mapOption
+     * @return all the products
+     */
+    private String showProducts(ArrayList<String> keys, Map<String, Product> map, int mapOption){
+        String products = "";
+        Map<String, Product> sortMap = (new FactoryMap<String, Product>()).newMap(mapOption);;
+
+        //---
+        //Process to sort a map. Using a source of: https://mkyong.com/java8/java-8-how-to-sort-a-map/ 
+        map.entrySet().stream()
+            .sorted(Map.Entry.<String, Product>comparingByKey())
+            .forEachOrdered(x -> sortMap.put(x.getKey(), x.getValue()));  
+        //---
+
+        for(int i = 0; i < keys.size(); i++){
+            Product product = sortMap.get(keys.get(i));
+            products += product.toString() + "\n";
+        }
+        return products;
     }
     //****************************************************************
 
@@ -177,7 +207,7 @@ public class Store {
      */
     private String createKey(String category, String product){
         category.trim(); product.trim();
-        String key = category + "|" + product;
+        String key = product + "|" + category;
         return key;
     }
     //****************************************************************

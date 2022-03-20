@@ -48,6 +48,7 @@ public class Product {
 
     /*****************************************************************
      * override of method toString
+     * @Override
      * @return a friendly message of product's properties
      */
     public String toString(){
