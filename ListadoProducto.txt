@@ -1,0 +1,29 @@
+Mueble de terraza |	Mesas de jardin
+Mueble de terraza |	Sillas de jardin
+Mueble de terraza |	Conjuntos mesas y sillas de jardin
+Mueble de terraza |	Mesas de Ping Pong exteriores
+Sillones de masaje |	Cojines y colchonetas de masaje
+Sillones de masaje |	Sillones relax y sofas de masajes
+Sillones de masaje |	Sillones de masajes avanzados
+Sillones de masaje |	Sofas camas
+Bebidas |	Cerveza tibetana Barley
+Bebidas |	Te frios
+Bebidas |	Coca cola 1 litro
+Bebidas |	Coca cola 2 litros
+Condimentos |	Sirope de regaliz
+Condimentos |	Especies Cajun del chef
+Condimentos |	Mezcla Gumbo del chef
+Frutas |	Peras secas
+Frutas |	Pasas
+Frutas |	Manzana roja
+Frutas |	Manzana verde
+Carnes |	Res
+Carnes |	Pollo
+Carnes |	Cerdo
+Carnes |	Camarones
+Carnes |	Pescados
+Lacteos |	Queso de cabra
+Lacteos |	Queso Manchego 
+Lacteos |	Leche descremada
+Lacteos |	Leche deslactosada
+Lacteos |	Leche entera

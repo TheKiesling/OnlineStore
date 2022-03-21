@@ -19,12 +19,13 @@ public class Product {
     Product and his properties
     */ 
 
-    //---------------------------PROPIEDADES--------------------------
+    //---------------------------PROPERTIES---------------------------
     private String name;
     private String category;
     private int amount;
 
-    //---------------------------MÉTODOS------------------------------
+    //---------------------------METHODS------------------------------
+
     /*****************************************************************
      * instance the properties
      * @param name
@@ -48,11 +49,15 @@ public class Product {
 
     /*****************************************************************
      * override of method toString
-     * @Override
      * @return a friendly message of product's properties
      */
-    public String toString(){
-        return this.category + " | " + this.name + " | " + this.amount;
+    public String toString(int option){
+        String string = "";
+        if (option == 3 || option == 4)
+            string = this.category + " | " + this.name + " | " + this.amount;
+        else if (option == 5 || option == 6)
+            string = this.category + " | " + this.name;
+        return string;
     }
     //****************************************************************
 }

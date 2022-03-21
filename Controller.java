@@ -22,27 +22,31 @@ public class Controller {
     public static void main(String[] args){
         View view = new View();
         try {
-            int mapOption = view.optionMap();
+            view.welcome();
+            int mapOption = view.mapOption();
             Store onlineStore = new Store(mapOption);
-            int option;
+            int option = -1;
             while(option != 7){
-                String result;
-                switch(option){
-                    case 1:
-                        String[] product = view.newProduct();
-                        result = onlineStore.newProduct(product[0], product[1]);
-                    break;
-                    case 2:
-                        String nameProduct = view.searchProduct();
-                        result = onlineStore.searchCategory(nameProduct);
-                    case 7:
-                        view.exit();
-                    break;
-                    default:
-                        result = onlineStore.showProducts(option, mapOption);
-                    break;
+                String result = "";
+                option = view.menu();
+
+                if (option == 1){
+                    String[] product = view.newProduct();
+                    result = onlineStore.newProduct(product[1], product[0]);
                     view.output(result);
                 }
+                else if (option == 2){
+                    String nameProduct = view.searchProduct();
+                    result = onlineStore.searchCategory(nameProduct);
+                    view.output(result);
+                } 
+                else if (option == 7)
+                    view.exit();
+                
+                else {
+                    result = onlineStore.showProducts(option, mapOption);
+                    view.output(result);
+                }                
             }
         } catch (Exception e) {
             String s = "ERROR: " + e.getMessage();
